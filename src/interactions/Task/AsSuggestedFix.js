@@ -20,6 +20,18 @@ export class AsSuggestedFix {
     Object.assign(this, task)
   }
 
+  suggestedFixVersion() {
+    return _get(this.suggestedFix, 'meta.version')
+  }
+
+  isVersion1() {
+    return this.suggestedFixVersion() === 1
+  }
+
+  isVersion2() {
+    return this.suggestedFixVersion() === 2
+  }
+
   /**
    * Returns true if the task contains a suggested fix with at least
    * one operation

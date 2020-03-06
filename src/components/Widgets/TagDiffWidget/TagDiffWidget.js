@@ -95,7 +95,7 @@ export const TagDiff = props => {
  * false as to whether it should be hidden given the current workspace props
  */
 TagDiffWidget.hideWidget = function(props) {
-  return !_get(props, 'task.suggestedFix', false)
+  return _get(props, 'task.suggestedFix.meta.version') !== 1
 }
 
 registerWidgetType(TagDiffWidget, descriptor)

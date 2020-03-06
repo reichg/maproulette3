@@ -15,6 +15,7 @@ import { allowedStatusProgressions, isCompletionStatus,
        from '../../../../services/Task/TaskStatus/TaskStatus'
 import { TaskReviewStatus } from '../../../../services/Task/TaskReview/TaskReviewStatus'
 import { TaskReviewLoadMethod } from '../../../../services/Task/TaskReview/TaskReviewLoadMethod'
+import AsSuggestedFix from '../../../../interactions/Task/AsSuggestedFix'
 import SignInButton from '../../../SignInButton/SignInButton'
 import WithSearch from '../../../HOCs/WithSearch/WithSearch'
 import WithTaskReview from '../../../HOCs/WithTaskReview/WithTaskReview'
@@ -275,7 +276,7 @@ export class ActiveTaskControls extends Component {
             <FormattedMessage {...messages.readOnly} />
            </div> :
            <React.Fragment>
-             {this.props.task.suggestedFix && (!isFinal || needsRevised) &&
+             {AsSuggestedFix(this.props.task).isVersion1() && (!isFinal || needsRevised) &&
                <SuggestedFixControls
                  {...this.props}
                  allowedProgressions={allowedProgressions}
@@ -284,7 +285,7 @@ export class ActiveTaskControls extends Component {
                  needsRevised={needsRevised}
                />
              }
-             {!this.props.task.suggestedFix && !isEditingTask && (!isFinal || needsRevised) &&
+             {!AsSuggestedFix(this.props.task).isVersion1() && !isEditingTask && (!isFinal || needsRevised) &&
              <TaskCompletionStep1
                {...this.props}
                allowedProgressions={allowedProgressions}
